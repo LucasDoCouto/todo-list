@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { MdDelete } from 'react-icons/md';
 import './App.css';
 
 const App = () => {
     const enterKey = 13
     const escKey = 27
 
+
+    const [tasks, setTasks] = useState([])
     const [value, setValue] = useState('')
 
     const erase = () => {
@@ -12,7 +15,9 @@ const App = () => {
     }
 
     const submit = () => {
-        alert(value)
+
+        setTasks([...tasks, { id: new Date().getTime(), title: value, checked: true}]);
+
         erase()
     }
 
@@ -35,6 +40,16 @@ const App = () => {
             </header>
             <section className='main'>
                 <input className='new-task' placeholder='insira uma nova tarefa' value={value} onChange={onChange} onKeyDown={onKeyDown} />
+                <ul className='task-list'>
+                    {tasks.map((task) => (
+                            <li key={task.id.toString()}>
+                                <span className='task'>
+                                    {task.title}
+                                </span>
+                                <buttton className="remove" type="button"><MdDelete size={28} /></buttton>
+                            </li>
+                    ))}
+                </ul>
             </section>
         </section>
     );
