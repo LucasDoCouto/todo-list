@@ -16,7 +16,7 @@ const App = () => {
 
     const submit = () => {
 
-        setTasks([...tasks, { id: new Date().getTime(), title: value, checked: true}]);
+        setTasks([...tasks, { id: new Date().getTime(), title: value, checked: false}]);
 
         erase()
     }
@@ -33,6 +33,12 @@ const App = () => {
         }
     }
 
+    const onToggle = (task) => {
+        setTasks(
+            tasks.map((obj) => (obj.id === task.id ? { ...obj, checked: !task.checked } : obj))
+        );
+    }
+
     return(
         <section id='app' className='clcontainer'>
             <header>
@@ -43,10 +49,10 @@ const App = () => {
                 <ul className='task-list'>
                     {tasks.map((task) => (
                             <li key={task.id.toString()}>
-                                <span className='task'>
+                                <span className={['task', task.checked ? 'checked' : ''].join(' ')} onClick={() => onToggle(task)} role='button' tabIndex={0}>
                                     {task.title}
                                 </span>
-                                <buttton className="remove" type="button"><MdDelete size={28} /></buttton>
+                                <button className="remove" type="button"><MdDelete size={28} /></button>
                             </li>
                     ))}
                 </ul>
