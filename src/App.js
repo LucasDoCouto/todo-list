@@ -39,6 +39,10 @@ const App = () => {
         );
     }
 
+    const onRemove = (task) => {
+        setTasks(tasks.filter((obj) => obj.id !== task.id));
+    }
+
     return(
         <section id='app' className='clcontainer'>
             <header>
@@ -49,10 +53,10 @@ const App = () => {
                 <ul className='task-list'>
                     {tasks.map((task) => (
                             <li key={task.id.toString()}>
-                                <span className={['task', task.checked ? 'checked' : ''].join(' ')} onClick={() => onToggle(task)} role='button' tabIndex={0}>
+                                <span className={['task', task.checked ? 'checked' : ''].join(' ')} onClick={() => onToggle(task)} onKeyPress={() => onToggle(task)} role='button' tabIndex={0}>
                                     {task.title}
                                 </span>
-                                <button className="remove" type="button"><MdDelete size={28} /></button>
+                                <button className="remove" type="button" onClick={() => onRemove(task)}><MdDelete size={28} /></button>
                             </li>
                     ))}
                 </ul>
