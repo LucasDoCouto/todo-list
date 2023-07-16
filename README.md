@@ -1,5 +1,6 @@
 # TO.DO
-To.Do is a To-Do App created using React. You can add new tasks, mark tasks as done and delete tasks
+To.Do is a To-Do App created using React. You can add new tasks, mark tasks as done and delete tasks.
+
 You can check the project deploy [HERE](https://todo-list-lucas-couto.vercel.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
